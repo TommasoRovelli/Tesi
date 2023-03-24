@@ -1397,7 +1397,11 @@ void Measure()
 
 	//energy distribution
 	bin = iene + (int)(( v/(double)(npart) - left_value_ene )/bin_size_ene);
-	++walker[bin];
+	for(int i=iene; i<iene+nbins_ene;++i)  {
+
+		if(bin==i) ++walker[i];
+
+	}
 
     walker[iv] = v;
 	walker[iv2] = extra_v*extra_v; //exclude intra-cluster contribution from the specific heat, not necessary
@@ -1514,7 +1518,7 @@ void Measure()
 	int bin_ang = igang + (int)((a-left_value_angle)/bin_size_angle);  //to set the right range
 	for(int i=igang; i<igang+nbins_angle;++i)  {
 
-		if(bin_ang==i) ++walker[i];
+		//if(bin_ang==i) ++walker[i];
 
 	}
 
@@ -1523,7 +1527,7 @@ void Measure()
 	bin = iboxx + (int)((boxx-left_value_boxx)/bin_size_boxx);  //to set the right range
 	for(int i=iboxx; i<iboxx+nbins_box;++i)  {
 
-		if(bin==i) ++walker[i];
+		//if(bin==i) ++walker[i];
 
 	}
 
@@ -1532,7 +1536,7 @@ void Measure()
 	bin = iboxy + (int)((boxy-left_value_boxy)/bin_size_boxy);  //to set the right range
 	for(int i=iboxy; i<iboxy+nbins_box;++i)  {
 
-		if(bin==i) ++walker[i];
+		//if(bin==i) ++walker[i];
 
 	}
 	
@@ -2234,17 +2238,17 @@ long double V_Pot(double r)
 {
 	//Soft Core
 	
-	long double energy =0.;
+	/*long double energy =0.;
         long double r3 = r*r*r;
 	if (r<rcut2)
 	{
 		energy = (0.00005/r3) + 1.0/(1.0+r3);
 	}
-	return energy;
+	return energy; */
 	
 
 	//Hard Core
-	/*
+	
 	long double energy =0.;
 	if (r<rcut2)
 	{
@@ -2255,7 +2259,7 @@ long double V_Pot(double r)
 		}
 	}
 	return energy;
-	*/
+	
 }
 
 //==================
